@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: afa-frontend
+  labels:
+    app: afa-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: afa-frontend
+  template:
+    metadata:
+      labels:
+        app: afa-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: afa-frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NEXT_PUBLIC_API_URL
+          value: "https://api.afa-app.com/api"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: afa-frontend
+spec:
+  selector:
+    app: afa-frontend
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: ClusterIP

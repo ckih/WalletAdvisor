@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: afa-config
+data:
+  DATABASE_URL: "postgresql://afa_user:afa_password@postgres-service:5432/afa_db"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
+  REDIS_URL: "redis://redis-service:6379/0"
+  ALGORITHM: "HS256"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: afa-secrets
+type: Opaque
+data:
+  # Base64 encoded placeholders
+  SECRET_KEY: "Y2hhbmdlLXRoaXMtc2VjcmV0LWtleQ=="
+  ENCRYPTION_KEY: "WVZsa2IzTmxYM0psWTNOMlpYUXRiR2xoYm1kM1pXUXRZMjlpWVE9PQ=="
+  ANTHROPIC_API_KEY: ""

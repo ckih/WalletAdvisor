@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: afa-backend
+  labels:
+    app: afa-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: afa-backend
+  template:
+    metadata:
+      labels:
+        app: afa-backend
+    spec:
+      containers:
+      - name: backend
+        image: afa-backend:latest
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: afa-config
+        - secretRef:
+            name: afa-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: afa-backend
+spec:
+  selector:
+    app: afa-backend
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: ClusterIP
