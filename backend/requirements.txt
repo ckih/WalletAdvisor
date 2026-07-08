@@ -74,7 +74,7 @@ SQLAlchemy==2.0.30
 starlette==0.38.6
 sympy==1.14.0
 torch==2.3.0
-triton==3.7.1
+triton==2.3.0
 typing-inspection==0.4.2
 typing_extensions==4.16.0
 uvicorn==0.30.0
