@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     ANTHROPIC_API_KEY: str = ""
 
-   KAFKA_BOOTSTRAP_SERVERS: str = ""
+    KAFKA_BOOTSTRAP_SERVERS: str = ""
     REDIS_URL: str = "redis://localhost:6379/0"
 
     class Config:
