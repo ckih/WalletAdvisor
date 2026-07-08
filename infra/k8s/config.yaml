@@ -5,7 +5,6 @@ metadata:
 data:
   DATABASE_URL: "postgresql://afa_user:afa_password@postgres-service:5432/afa_db"
   KAFKA_BOOTSTRAP_SERVERS: "kafka-service:9092"
-  REDIS_URL: "redis://redis-service:6379/0"
   ALGORITHM: "HS256"
 ---
 apiVersion: v1
