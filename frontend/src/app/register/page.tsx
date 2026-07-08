@@ -25,12 +25,12 @@ export default function RegisterPage() {
         full_name: fullName || undefined,
       });
       router.push("/login");
-    } catch (err: any) {
-      const detail = err?.response?.data?.detail;
-      setError(typeof detail === "string" ? detail : "Registration failed");
-      console.error(err);
-    }
-  };
+    } catch (err) {
+  const axiosErr = err as { response?: { data?: { detail?: string } } };
+  const detail = axiosErr?.response?.data?.detail;
+  setError(typeof detail === "string" ? detail : "Registration failed");
+  console.error(err);
+}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50">
