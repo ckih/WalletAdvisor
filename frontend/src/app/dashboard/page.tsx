@@ -27,10 +27,13 @@ export default function DashboardPage() {
 
   const fetchData = useCallback(async () => {
     try {
-      const goalsRes = await api.get("/goals/");
-      setGoals(goalsRes.data);
+      // ⚡ Bolt: Fetch goals and profile data concurrently to reduce initial load time
+      const [goalsRes, profileRes] = await Promise.all([
+        api.get("/goals/"),
+        api.get("/risk/profile")
+      ]);
 
-      const profileRes = await api.get("/risk/profile");
+      setGoals(goalsRes.data);
       setProfile(profileRes.data);
 
       const total = goalsRes.data.reduce((acc: number, g: Goal) => acc + g.current_amount, 0);

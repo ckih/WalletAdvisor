@@ -1,0 +1,1 @@
+## 2024-10-08 - Use Promise.all for independent API calls\n**Learning:** Sequential API fetching causes a significant bottleneck on initial load, particularly on dashboard pages.\n**Action:** Use `Promise.all` to parallelize independent data requests.
